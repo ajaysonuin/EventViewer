@@ -8,24 +8,24 @@ import './rxjs-operators';
 @Injectable()
 export class EventService {
 
-  private baseUrl='http://localhost/logger/EventService.svc';
+    private baseUrl ='http://localhost/logs/api/Event';
 
 constructor(private http: Http) { }
 
   getEvents(): Observable<Event[]> {
-    return this.http.get(`${this.baseUrl}/GetAllEvents/?name=`, {headers: this.getHeaders()})
+    return this.http.get(`${this.baseUrl}/GetAllEvents?name=`, {headers: this.getHeaders()})
                .map(res=>res.json())
                .catch(handleError);
   }
 
-  getEventLogs(source:string,name:string): Observable<EventLog[]> {
-    return this.http.get(`${this.baseUrl}/GetAllLogs/?source=${source}&name=${name}`, {headers: this.getHeaders()})
+  getEventLogs(name:string,source:string): Observable<EventLog[]> {
+    return this.http.get(`${this.baseUrl}/GetAllLogs?name=${name}&source=${source}`, {headers: this.getHeaders()})
                .map(res=>res.json())
                .catch(handleError);
   }
 
   getEvent(name: string): Observable<Event> {
-    let event$ = this.http.get(`${this.baseUrl}/GetEvent/?name=${name}`, {headers: this.getHeaders()})
+    let event$ = this.http.get(`${this.baseUrl}/GetEvent?name=${name}`, {headers: this.getHeaders()})
       .map(res=>res.json());
       return event$;
 }

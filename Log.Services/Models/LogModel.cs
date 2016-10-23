@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Log.Service.Entities
+namespace Log.Services.Models
 {
     public class LogModel
     {

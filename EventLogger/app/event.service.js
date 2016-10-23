@@ -15,20 +15,20 @@ require('./rxjs-operators');
 var EventService = (function () {
     function EventService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost/logger/EventService.svc';
+        this.baseUrl = 'http://localhost/logs/api/Event';
     }
     EventService.prototype.getEvents = function () {
-        return this.http.get(this.baseUrl + "/GetAllEvents/?name=", { headers: this.getHeaders() })
+        return this.http.get(this.baseUrl + "/GetAllEvents?name=", { headers: this.getHeaders() })
             .map(function (res) { return res.json(); })
             .catch(handleError);
     };
-    EventService.prototype.getEventLogs = function (source, name) {
-        return this.http.get(this.baseUrl + "/GetAllLogs/?source=" + source + "&name=" + name, { headers: this.getHeaders() })
+    EventService.prototype.getEventLogs = function (name, source) {
+        return this.http.get(this.baseUrl + "/GetAllLogs?name=" + name + "&source=" + source, { headers: this.getHeaders() })
             .map(function (res) { return res.json(); })
             .catch(handleError);
     };
     EventService.prototype.getEvent = function (name) {
-        var event$ = this.http.get(this.baseUrl + "/GetEvent/?name=" + name, { headers: this.getHeaders() })
+        var event$ = this.http.get(this.baseUrl + "/GetEvent?name=" + name, { headers: this.getHeaders() })
             .map(function (res) { return res.json(); });
         return event$;
     };

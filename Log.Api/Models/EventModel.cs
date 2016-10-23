@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Log.Service.Entities
+namespace Log.Api.Models
 {
     public class EventModel
     {
